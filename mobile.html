@@ -120,14 +120,14 @@
                 <div class="swiper-slide1">
                     <form class="form">
                         <div class="input">
-                            <input type="text" placeholder="请填写您的姓名" />
+                            <input type="text" placeholder="请填写您的姓名" class="name" />
                         </div>
                         <div class="input select">
-                            <input placeholder="请选择您所在的省份和地区" readonly id="area">
+                            <input placeholder="请选择您所在的省份和地区" readonly class="province" id="area">
                             <img src="./assets/img/up.png" alt="">
                         </div>
                         <div class="input">
-                            <input type="text" placeholder="请选择您所在医院" />
+                            <input type="text" placeholder="请选择您所在医院" class="hospital" />
                         </div>
                     </form>
                     <img src="./assets/img/mobile-1-info.png" class="info" />
@@ -137,7 +137,7 @@
             <div class="swiper-slide">
                 <div class="swiper-slide2">
                     <div class="title">
-                        <p>中国已有<span>8000位</span>专家</p>
+                        <p>中国已有<span id="num">0位</span>专家</p>
                         <p>与您共同点亮</p>
                         <p>胃癌免疫规范治疗之光</p>
                     </div>
@@ -154,6 +154,7 @@
 <script src="./assets/mobile-select.js"></script>
 <script src="./assets/echarts.min.js"></script>
 <script src="./assets/china.js"></script>
+<script src="./assets/ajax.js"></script>
 <script>
     var mySwiper = new Swiper('.swiper-container', {
         direction: "vertical"
@@ -213,9 +214,9 @@
         { name: '澳门' }
     ]
     var myChart = echarts.init(document.querySelector('.map'));
-    option = {
+    var option = {
         geo: {
-            top:'50',
+            top: '50',
             map: 'china',
             roam: false,//不开启缩放和平移
             zoom: 1.2,//视角缩放比例
@@ -263,6 +264,29 @@
         ]
     };
     myChart.setOption(option);
+
+    document.querySelector(".img").addEventListener("click", function () {
+        Ajax("post", "http://me.amrtang.com/map731/api/web/v1/actor/submit", {
+            time: "1480576266",
+            token: "c92114bcc9e4454f1d2b7399dc9d62a9",
+            authToken: "",
+            name: document.querySelector(".name").value,
+            province: document.querySelector(".province").value,
+            hospital: document.querySelector(".hospital").value
+        }, function (res) {
+            res = JSON.parse(res);
+            if (res.status === 1) {
+                document.getElementById("num").innerText = res.data.total;
+                myChart.dispatchAction({ type: "geoSelect", name: document.querySelector(".province").value });
+                mySwiper.slideNext();
+                setTimeout(() => {
+                    myChart.dispatchAction({ type: "geoUnSelect", name: document.querySelector(".province").value });
+                }, 5000)
+            } else {
+                alert(res.msg);
+            }
+        })
+    })
 </script>
 
 </html>
