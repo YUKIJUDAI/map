@@ -57,13 +57,14 @@
 <body>
     <div class="main">
         <div class="info">
-            <p>中国已有<span>8000位</span>专家</p>
+            <p>中国已有<span id="num">0位</span>专家</p>
             <p>与您共同点亮胃癌免疫规范治疗之光</p>
         </div>
         <div class="map"></div>
     </div>
     <script src="./assets/echarts.min.js"></script>
     <script src="./assets/china.js"></script>
+    <script src="./assets/ajax.js"></script>
     <script type="text/javascript">
         var dataList = [
             { name: "南海诸岛" },
@@ -103,7 +104,7 @@
             { name: '澳门' }
         ]
         var myChart = echarts.init(document.querySelector('.map'));
-        option = {
+        var option = {
             geo: {
                 map: 'china',
                 roam: false,//不开启缩放和平移
@@ -152,16 +153,30 @@
             ]
         };
         myChart.setOption(option);
-        myChart.dispatchAction({
-            type: "geoSelect",
-            name: "浙江"
-        });
-        setTimeout(() => {
-            myChart.dispatchAction({
-                type: "geoUnSelect",
-                name: "浙江"
-            })
-        }, 3000);
+
+        var oldData = [];
+
+        function getInfo() {
+            Ajax("post", "http://me.amrtang.com/map731/api/web/v1/actor/query", { time: "1480576266", token: "c92114bcc9e4454f1d2b7399dc9d62a9", authToken: "" }, function (res) {
+                res = JSON.parse(res);
+                if (res.status === 1 && res.data.province.length !== 0) {
+                    document.getElementById("num").innerText = res.data.total;
+                    res.data.province.forEach(item => {
+                        myChart.dispatchAction({ type: "geoSelect", name: item });
+                    });
+                    oldData = res.data.province;
+                }
+                setTimeout(() => {
+                    oldData.forEach(item => {
+                        myChart.dispatchAction({ type: "geoUnSelect", name: item });
+                    });
+                    this.oldData = [];
+                }, 1000);
+            });
+        }
+
+        setInterval(() => getInfo(), 2000);
+
     </script>
 </body>
 
