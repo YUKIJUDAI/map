@@ -151,10 +151,10 @@
                     normal: {
                         borderColor: "#fff",
                         borderWidth: 1,
-                        areaColor: "#174168",
+                        areaColor: "#c7d4dd",
                     },
                     emphasis: {
-                        areaColor: "#F3B329",
+                        areaColor: "#00416a",
                         shadowOffsetX: 0,
                         shadowOffsetY: 0,
                         shadowBlur: 20,
@@ -183,7 +183,7 @@
                     res = JSON.parse(res);
                     if (res.status === 1) {
                         document.getElementById("num").innerText = res.data.total + "位";
-                        if (res.data.province.length !== 0) {                          
+                        if (res.data.province.length !== 0) {
                             res.data.province.forEach((item) => {
                                 myChart.dispatchAction({ type: "geoSelect", name: item });
                             });

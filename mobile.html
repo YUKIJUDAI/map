@@ -121,7 +121,7 @@
                 </div>
                 <div class="input select">
                     <input placeholder="请选择您所在的省份和地区" readonly class="province" />
-                    <img src="./assets/img/up.png" alt="" id="area"/>
+                    <img src="./assets/img/up.png" alt="" id="area" />
                 </div>
                 <div class="input">
                     <input type="text" placeholder="请选择您所在医院" class="hospital" />
@@ -294,10 +294,10 @@
                 normal: {
                     borderColor: "#fff",
                     borderWidth: 1,
-                    areaColor: "rgb(190,211,220)",
+                    areaColor: "#c7d4dd",
                 },
                 emphasis: {
-                    areaColor: "#F3B329",
+                    areaColor: "#00416a",
                     shadowOffsetX: 0,
                     shadowOffsetY: 0,
                     shadowBlur: 20,
@@ -333,7 +333,7 @@
                     document.getElementById("num").innerText = res.data.total + "位";
                     myChart.dispatchAction({ type: "geoSelect", name: document.querySelector(".province").value });
                     flag = true;
-                    touchBox.next();                   
+                    touchBox.next();
                     setTimeout(() => {
                         myChart.dispatchAction({ type: "geoUnSelect", name: document.querySelector(".province").value });
                     }, 5000);
