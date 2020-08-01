@@ -93,7 +93,7 @@
         }
 
         .swiper-slide2 .title span {
-            padding: 0 10px;
+            padding: 0 5px;
             font-size: 32px;
             color: #da6629;
         }
@@ -120,8 +120,8 @@
                     <input type="text" placeholder="请填写您的姓名" class="name" />
                 </div>
                 <div class="input select">
-                    <input placeholder="请选择您所在的省份和地区" readonly class="province" id="area" />
-                    <img src="./assets/img/up.png" alt="" />
+                    <input placeholder="请选择您所在的省份和地区" readonly class="province" />
+                    <img src="./assets/img/up.png" alt="" id="area"/>
                 </div>
                 <div class="input">
                     <input type="text" placeholder="请选择您所在医院" class="hospital" />
@@ -162,7 +162,7 @@
 
     var mobileSelect1 = new MobileSelect({
         trigger: "#area",
-        title: "城市和地区",
+        title: "省份和城市",
         wheels: [
             {
                 data: [
@@ -204,7 +204,7 @@
             },
         ],
         callback: function (indexArr, data) {
-            document.getElementById("area").value = data[0] || "";
+            document.querySelector(".province").value = data[0] || "";
         },
     });
 
@@ -330,7 +330,7 @@
             function (res) {
                 res = JSON.parse(res);
                 if (res.status === 1) {
-                    document.getElementById("num").innerText = res.data.total;
+                    document.getElementById("num").innerText = res.data.total + "位";
                     myChart.dispatchAction({ type: "geoSelect", name: document.querySelector(".province").value });
                     flag = true;
                     touchBox.next();                   
