@@ -1,204 +1,207 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>pc</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
-            }
 
-            html,
-            body {
-                width: 100vw;
-                height: 100vh;
-            }
+<head>
+    <meta charset="UTF-8" />
+    <title>pc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
-            .main {
-                position: relative;
-                background: url("./assets/img/pc-bg.png") no-repeat center left;
-                background-size: cover;
-                height: 100vh;
-                overflow: hidden;
-            }
+        html,
+        body {
+            width: 100vw;
+            height: 100vh;
+        }
 
-            .info {
-                position: absolute;
-                top: 80px;
-                left: 100px;
-                font-size: 30px;
-                color: #174168;
-                line-height: 40px;
-                font-weight: bold;
-                letter-spacing: 5px;
-                font-size: "黑体";
-            }
+        .main {
+            position: relative;
+            background: url("./assets/img/pc-bg.png") no-repeat center left;
+            background-size: cover;
+            height: 100vh;
+            overflow: hidden;
+        }
 
-            .info span {
-                padding: 0 10px;
-                font-size: 45px;
-                color: #da6629;
-            }
+        .info {
+            position: absolute;
+            top: 80px;
+            left: 100px;
+            font-size: 30px;
+            color: #174168;
+            line-height: 40px;
+            font-weight: bold;
+            letter-spacing: 5px;
+            font-size: "黑体";
+        }
 
-            .map {
-                position: absolute;
-                width: 1200px;
-                height: 900px;
-                top: 80px;
-                right: 150px;
-            }
-        </style>
-    </head>
+        .info span {
+            padding: 0 10px;
+            font-size: 45px;
+            color: #da6629;
+        }
 
-    <body>
-        <div class="main">
-            <div class="info">
-                <p>中国已有<span id="num">0位</span>专家</p>
-                <p>与您共同点亮胃癌免疫规范治疗之光</p>
-            </div>
-            <div class="map"></div>
+        .map {
+            position: absolute;
+            width: 1200px;
+            height: 900px;
+            top: 80px;
+            right: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="info">
+            <p>中国已有<span id="num">0位</span>专家</p>
+            <p>与您共同点亮胃癌免疫规范治疗之光</p>
         </div>
-        <script src="./assets/echarts.min.js"></script>
-        <script src="./assets/china.js"></script>
-        <script src="./assets/ajax.js"></script>
-        <script type="text/javascript">
-            var dataList = [
-                { name: "南海诸岛" },
-                { name: "北京" },
-                { name: "天津" },
-                { name: "上海" },
-                { name: "重庆" },
-                { name: "河北" },
-                { name: "河南" },
-                { name: "云南" },
-                { name: "辽宁" },
-                { name: "黑龙江" },
-                { name: "湖南" },
-                { name: "安徽" },
-                { name: "山东" },
-                { name: "新疆" },
-                { name: "江苏" },
-                { name: "浙江" },
-                { name: "江西" },
-                { name: "湖北" },
-                { name: "广西" },
-                { name: "甘肃" },
-                { name: "山西" },
-                { name: "内蒙古" },
-                { name: "陕西" },
-                { name: "吉林" },
-                { name: "福建" },
-                { name: "贵州" },
-                { name: "广东" },
-                { name: "青海" },
-                { name: "西藏" },
-                { name: "四川" },
-                { name: "宁夏" },
-                { name: "海南" },
-                { name: "台湾" },
-                { name: "香港" },
-                { name: "澳门" },
-            ];
-            var myChart = echarts.init(document.querySelector(".map"));
-            var option = {
-                geo: {
-                    map: "china",
-                    roam: false, //不开启缩放和平移
-                    zoom: 1.2, //视角缩放比例
-                    silent: true,
-                    regions: [
-                        {
-                            name: "南海诸岛",
-                            value: 0,
-                            itemStyle: {
-                                normal: {
-                                    opacity: 0,
-                                    label: {
-                                        show: false,
-                                    },
-                                },
-                            },
-                            label: {
-                                show: false,
-                            },
-                        },
-                    ],
-                    label: {
-                        normal: {
-                            show: true,
-                            fontSize: "16",
-                            color: "#da6629",
-                            padding: [0, 50, 0, 0],
-                            formatter: function (params) {
-                                return params.name + "\r{img|}";
-                            },
-                            rich: {
-                                img: {
-                                    backgroundColor: { image: "./assets/img/quan.png" },
-                                },
-                            },
-                        },
-                        emphasis: {
-                            color: "#da6629",
-                        },
-                    },
-                    itemStyle: {
-                        normal: {
-                            borderColor: "#fff",
-                            borderWidth: 1,
-                            areaColor: "#174168",
-                        },
-                        emphasis: {
-                            areaColor: "#F3B329",
-                            shadowOffsetX: 0,
-                            shadowOffsetY: 0,
-                            shadowBlur: 20,
-                            borderWidth: 0,
-                            shadowColor: "rgba(0, 0, 0, 0.5)",
-                        },
-                    },
-                },
-                series: [
+        <div class="map"></div>
+    </div>
+    <script src="./assets/echarts.min.js"></script>
+    <script src="./assets/china.js"></script>
+    <script src="./assets/ajax.js"></script>
+    <script type="text/javascript">
+        var dataList = [
+            { name: "南海诸岛" },
+            { name: "北京" },
+            { name: "天津" },
+            { name: "上海" },
+            { name: "重庆" },
+            { name: "河北" },
+            { name: "河南" },
+            { name: "云南" },
+            { name: "辽宁" },
+            { name: "黑龙江" },
+            { name: "湖南" },
+            { name: "安徽" },
+            { name: "山东" },
+            { name: "新疆" },
+            { name: "江苏" },
+            { name: "浙江" },
+            { name: "江西" },
+            { name: "湖北" },
+            { name: "广西" },
+            { name: "甘肃" },
+            { name: "山西" },
+            { name: "内蒙古" },
+            { name: "陕西" },
+            { name: "吉林" },
+            { name: "福建" },
+            { name: "贵州" },
+            { name: "广东" },
+            { name: "青海" },
+            { name: "西藏" },
+            { name: "四川" },
+            { name: "宁夏" },
+            { name: "海南" },
+            { name: "台湾" },
+            { name: "香港" },
+            { name: "澳门" },
+        ];
+        var myChart = echarts.init(document.querySelector(".map"));
+        var option = {
+            geo: {
+                map: "china",
+                roam: false, //不开启缩放和平移
+                zoom: 1.2, //视角缩放比例
+                silent: true,
+                regions: [
                     {
-                        type: "map",
-                        data: dataList,
+                        name: "南海诸岛",
+                        value: 0,
+                        itemStyle: {
+                            normal: {
+                                opacity: 0,
+                                label: {
+                                    show: false,
+                                },
+                            },
+                        },
+                        label: {
+                            show: false,
+                        },
                     },
                 ],
-            };
-            myChart.setOption(option);
+                label: {
+                    normal: {
+                        show: false,
+                        fontSize: "16",
+                        color: "#da6629",
+                        padding: [0, 50, 0, 0],
+                        formatter: function (params) {
+                            return params.name + "\r{img|}";
+                        },
+                        rich: {
+                            img: {
+                                backgroundColor: { image: "./assets/img/quan.png" },
+                            },
+                        },
+                    },
+                    emphasis: {
+                        selectorLabel: { show: true },
+                        color: "#da6629"
+                    },
+                },
+                itemStyle: {
+                    normal: {
+                        borderColor: "#fff",
+                        borderWidth: 1,
+                        areaColor: "#174168",
+                    },
+                    emphasis: {
+                        areaColor: "#F3B329",
+                        shadowOffsetX: 0,
+                        shadowOffsetY: 0,
+                        shadowBlur: 20,
+                        borderWidth: 0,
+                        shadowColor: "rgba(0, 0, 0, 0.5)",
+                    },
+                },
+            },
+            series: [
+                {
+                    type: "map",
+                    data: dataList,
+                },
+            ],
+        };
+        myChart.setOption(option);
 
-            var oldData = [];
+        var oldData = [];
 
-            function getInfo() {
-                Ajax(
-                    "post",
-                    "http://me.amrtang.com/map731/api/web/v1/actor/query",
-                    { time: "1480576266", token: "c92114bcc9e4454f1d2b7399dc9d62a9", authToken: "" },
-                    function (res) {
-                        res = JSON.parse(res);
-                        if (res.status === 1) {
-                            document.getElementById("num").innerText = res.data.total + "位";
-                            if (res.data.province.length !== 0) {
-                                res.data.province.forEach((item) => {
-                                    myChart.dispatchAction({ type: "geoSelect", name: item });
-                                });
-                                oldData = res.data.province;
-                            }
-                        }
-                        setTimeout(() => {
-                            oldData.forEach((item) => {
-                                myChart.dispatchAction({ type: "geoUnSelect", name: item });
+        function getInfo() {
+            Ajax(
+                "post",
+                "http://me.amrtang.com/map731/api/web/v1/actor/query",
+                { time: "1480576266", token: "c92114bcc9e4454f1d2b7399dc9d62a9", authToken: "" },
+                function (res) {
+                    res = JSON.parse(res);
+                    if (res.status === 1) {
+                        document.getElementById("num").innerText = res.data.total + "位";
+                        if (res.data.province.length !== 0) {                          
+                            res.data.province.forEach((item) => {
+                                myChart.dispatchAction({ type: "geoSelect", name: item });
                             });
-                            this.oldData = [];
-                        }, 1000);
+                            oldData = res.data.province;
+                        }
                     }
-                );
-            }
+                    setTimeout(() => {
+                        oldData.forEach((item) => {
+                            myChart.dispatchAction({ type: "geoUnSelect", name: item });
+                        });
+                        this.oldData = [];
+                    }, 1000);
+                }
+            );
+        }
 
-            setInterval(() => getInfo(), 2000);
-        </script>
-    </body>
+        setInterval(() => getInfo(), 2000);
+    </script>
+</body>
+
 </html>
