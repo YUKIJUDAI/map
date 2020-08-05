@@ -1,600 +1,606 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link rel="stylesheet" href="./assets/mobile-select.css" />
-    <link rel="stylesheet" href="./assets/fullpage.min.css" />
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-        }
-
-        #lanren #audio-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            width: 30px;
-            height: 30px;
-            z-index: 99;
-        }
-
-        #lanren .on {
-            background: url('./assets/img/music_on.png') no-repeat 0 0;
-            background-size: cover;
-            -webkit-animation: rotating 1.2s linear infinite;
-            animation: rotating 1.2s linear infinite;
-        }
-
-        #lanren .off {
-            background: url('./assets/img/music_off.png') no-repeat 0 0;
-            background-size: cover;
-        }
-
-        @-webkit-keyframes rotating {
-            from {
-                -webkit-transform: rotate(0deg);
-                -moz-transform: rotate(0deg);
-                -ms-transform: rotate(0deg);
-                -o-transform: rotate(0deg);
-                transform: rotate(0deg);
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" href="./assets/mobile-select.css" />
+        <link rel="stylesheet" href="./assets/fullpage.min.css" />
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
             }
 
-            to {
-                -webkit-transform: rotate(360deg);
-                -moz-transform: rotate(360deg);
-                -ms-transform: rotate(360deg);
-                -o-transform: rotate(360deg);
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes rotating {
-            from {
-                -webkit-transform: rotate(0deg);
-                -moz-transform: rotate(0deg);
-                -ms-transform: rotate(0deg);
-                -o-transform: rotate(0deg);
-                transform: rotate(0deg);
+            #lanren #audio-btn {
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                width: 30px;
+                height: 30px;
+                z-index: 99;
             }
 
-            to {
-                -webkit-transform: rotate(360deg);
-                -moz-transform: rotate(360deg);
-                -ms-transform: rotate(360deg);
-                -o-transform: rotate(360deg);
-                transform: rotate(360deg);
+            #lanren .on {
+                background: url("./assets/img/music_on.png") no-repeat 0 0;
+                background-size: cover;
+                -webkit-animation: rotating 1.2s linear infinite;
+                animation: rotating 1.2s linear infinite;
             }
-        }
 
-        .swiper-slide1 {
-            background: url("./assets/img/mobile-1-bg.png") no-repeat top left;
-            background-size: cover;
-            height: 100vh;
-        }
+            #lanren .off {
+                background: url("./assets/img/music_off.png") no-repeat 0 0;
+                background-size: cover;
+            }
 
-        .swiper-slide1 .form {
-            padding-top: 80%;
-            text-align: center;
-        }
+            @-webkit-keyframes rotating {
+                from {
+                    -webkit-transform: rotate(0deg);
+                    -moz-transform: rotate(0deg);
+                    -ms-transform: rotate(0deg);
+                    -o-transform: rotate(0deg);
+                    transform: rotate(0deg);
+                }
 
-        .swiper-slide1 .input {
-            width: 60%;
-            margin: 0 auto 20px;
-        }
+                to {
+                    -webkit-transform: rotate(360deg);
+                    -moz-transform: rotate(360deg);
+                    -ms-transform: rotate(360deg);
+                    -o-transform: rotate(360deg);
+                    transform: rotate(360deg);
+                }
+            }
 
-        .swiper-slide1 .input input {
-            width: 100%;
-            height: 24px;
-            border: 1px solid #174168;
-            border-radius: 10px;
-            padding: 3px 10px;
-            margin-left: -10px;
-        }
+            @keyframes rotating {
+                from {
+                    -webkit-transform: rotate(0deg);
+                    -moz-transform: rotate(0deg);
+                    -ms-transform: rotate(0deg);
+                    -o-transform: rotate(0deg);
+                    transform: rotate(0deg);
+                }
 
-        .swiper-slide1 .input input::-webkit-input-placeholder {
-            color: #174168;
-        }
+                to {
+                    -webkit-transform: rotate(360deg);
+                    -moz-transform: rotate(360deg);
+                    -ms-transform: rotate(360deg);
+                    -o-transform: rotate(360deg);
+                    transform: rotate(360deg);
+                }
+            }
 
-        .swiper-slide1 .input input:focus {
-            outline: none;
-        }
+            .swiper-slide1 {
+                background: url("./assets/img/mobile-1-bg.png") no-repeat top left;
+                background-size: cover;
+                height: 100vh;
+            }
 
-        .swiper-slide1 .select {
-            position: relative;
-        }
+            .swiper-slide1 .form {
+                padding-top: 80%;
+                text-align: center;
+            }
 
-        .swiper-slide1 .select .input {
-            width: 100%;
-        }
+            .swiper-slide1 .input {
+                width: 60%;
+                margin: 0 auto 20px;
+            }
 
-        .swiper-slide1 .select img {
-            position: absolute;
-            width: auto;
-            top: 0;
-            right: -11px;
-            height: 32px;
-        }
+            .swiper-slide1 .input input {
+                width: 100%;
+                height: 24px;
+                border: 1px solid #174168;
+                border-radius: 10px;
+                padding: 3px 10px;
+                margin-left: -10px;
+            }
 
-        .swiper-slide1 .info {
-            display: block;
-            width: 80%;
-            margin: 20px auto;
-        }
+            .swiper-slide1 .input input::-webkit-input-placeholder {
+                color: #174168;
+            }
 
-        .swiper-slide1 .img {
-            display: block;
-            width: 26%;
-            margin: 20px auto;
-        }
+            .swiper-slide1 .input input:focus {
+                outline: none;
+            }
 
-        .swiper-slide2 {
-            background: url("./assets/img/mobile-2-bg.png") no-repeat top left;
-            background-size: cover;
-            height: 100vh;
-        }
+            .swiper-slide1 .select {
+                position: relative;
+            }
 
-        .swiper-slide2 .title {
-            padding-top: 80px;
-            text-align: center;
-        }
+            .swiper-slide1 .select .input {
+                width: 100%;
+            }
 
-        .swiper-slide2 .title p {
-            font-size: 24px;
-            color: #174168;
-            line-height: 35px;
-            font-weight: bold;
-            letter-spacing: 5px;
-            font-size: "黑体";
-        }
+            .swiper-slide1 .select img {
+                position: absolute;
+                width: auto;
+                top: 0;
+                right: -11px;
+                height: 32px;
+            }
 
-        .swiper-slide2 .title span {
-            padding: 0 5px;
-            font-size: 32px;
-            color: #da6629;
-        }
+            .swiper-slide1 .info {
+                display: block;
+                width: 80%;
+                margin: 20px auto;
+            }
 
-        .swiper-slide2 .map {
-            width: 100%;
-            height: 500px;
-        }
+            .swiper-slide1 .img {
+                display: block;
+                width: 26%;
+                margin: 20px auto;
+            }
 
-        .page {
-            position: fixed;
-            width: 50px;
-            height: 50px;
-            left: 0;
-            right: 0;
-            bottom: 20px;
-            margin: 0 auto;
-            cursor: pointer;
-        }
+            .swiper-slide2 {
+                background: url("./assets/img/mobile-2-bg.png") no-repeat top left;
+                background-size: cover;
+                height: 100vh;
+            }
 
-        .arrow {
-            position: absolute;
-            left: 35%;
-            bottom: 30%;
-        }
+            .swiper-slide2 .title {
+                padding-top: 80px;
+                text-align: center;
+            }
 
-        .arrow-1 {
-            -webkit-animation: arrow-movement 2s ease-in-out infinite;
-            animation: arrow-movement 2s ease-in-out infinite;
-        }
+            .swiper-slide2 .title p {
+                font-size: 24px;
+                color: #174168;
+                line-height: 35px;
+                font-weight: bold;
+                letter-spacing: 5px;
+                font-size: "黑体";
+            }
 
-        .arrow-2 {
-            -webkit-animation: arrow-movement 2s 1s ease-in-out infinite;
-            animation: arrow-movement 2s 1s ease-in-out infinite;
-        }
+            .swiper-slide2 .title span {
+                padding: 0 5px;
+                font-size: 32px;
+                color: #da6629;
+            }
 
-        .arrow:before,
-        .arrow:after {
-            background: #333;
-            content: "";
-            display: block;
-            height: 3px;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 20px;
-        }
+            .swiper-slide2 .map {
+                width: 100%;
+                height: 500px;
+            }
 
-        .arrow:before {
-            -webkit-transform: rotate(-45deg) translateX(-30%);
-            transform: rotate(-45deg) translateX(-30%);
-            -webkit-transform-origin: top left;
-            transform-origin: top left;
-        }
+            .page {
+                position: fixed;
+                width: 50px;
+                height: 50px;
+                left: 0;
+                right: 0;
+                bottom: 20px;
+                margin: 0 auto;
+                cursor: pointer;
+            }
 
-        .arrow:after {
-            -webkit-transform: rotate(45deg) translateX(30%);
-            transform: rotate(45deg) translateX(30%);
-            -webkit-transform-origin: top right;
-            transform-origin: top right;
-        }
-
-        @-webkit-keyframes arrow-movement {
-            0% {
-                opacity: 0;
+            .arrow {
+                position: absolute;
+                left: 35%;
                 bottom: 30%;
             }
 
-            30% {
-                opacity: 1;
+            .arrow-1 {
+                -webkit-animation: arrow-movement 2s ease-in-out infinite;
+                animation: arrow-movement 2s ease-in-out infinite;
             }
 
-            100% {
-                opacity: 0;
-                bottom: 70%;
-            }
-        }
-
-        @keyframes arrow-movement {
-            0% {
-                opacity: 0;
-                bottom: 30%;
+            .arrow-2 {
+                -webkit-animation: arrow-movement 2s 1s ease-in-out infinite;
+                animation: arrow-movement 2s 1s ease-in-out infinite;
             }
 
-            30% {
-                opacity: 1;
+            .arrow:before,
+            .arrow:after {
+                background: #333;
+                content: "";
+                display: block;
+                height: 3px;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 20px;
             }
 
-            100% {
-                opacity: 0;
-                bottom: 60%;
+            .arrow:before {
+                -webkit-transform: rotate(-45deg) translateX(-30%);
+                transform: rotate(-45deg) translateX(-30%);
+                -webkit-transform-origin: top left;
+                transform-origin: top left;
             }
-        }
 
-        .swiper-slide3 {
-            background: url("./assets/img/mobile-3-bg.jpg") no-repeat top left;
-            background-size: cover;
-            height: 100vh;
-        }
+            .arrow:after {
+                -webkit-transform: rotate(45deg) translateX(30%);
+                transform: rotate(45deg) translateX(30%);
+                -webkit-transform-origin: top right;
+                transform-origin: top right;
+            }
 
-        #audio {
-            display: none;
-        }
-    </style>
-</head>
+            @-webkit-keyframes arrow-movement {
+                0% {
+                    opacity: 0;
+                    bottom: 30%;
+                }
 
-<body>
-    <div id="lanren">
-        <div id="audio-btn" class="off" onclick="changeClass()">
-            <audio loop="loop" src="./assets/bgm.mp3" id="media" preload="preload"></audio>
-        </div>
-    </div>
-    <div id="touchBoxCt">
-        <div class="swiper-slide1">
-            <form class="form" onfocusout="handleInputBlur(event)" onfocusin="handleInputBin(event)">
-                <div class="input">
-                    <input type="text" placeholder="请填写您的姓名" class="name" />
-                </div>
-                <div class="input select">
-                    <input placeholder="请选择您所在的省份和城市" readonly class="province" />
-                    <img src="./assets/img/up.png" alt="" id="area" />
-                </div>
-                <div class="input">
-                    <input type="text" placeholder="请填写您所在医院" class="hospital" />
-                </div>
-            </form>
-            <img src="./assets/img/mobile-1-quan.png" class="img" />
-        </div>
-        <div class="swiper-slide2">
-            <div class="title">
-                <p>中国已有<span id="num">0位</span>专家</p>
-                <p>与您共同点亮</p>
-                <p>胃癌免疫规范治疗之光</p>
+                30% {
+                    opacity: 1;
+                }
+
+                100% {
+                    opacity: 0;
+                    bottom: 70%;
+                }
+            }
+
+            @keyframes arrow-movement {
+                0% {
+                    opacity: 0;
+                    bottom: 30%;
+                }
+
+                30% {
+                    opacity: 1;
+                }
+
+                100% {
+                    opacity: 0;
+                    bottom: 60%;
+                }
+            }
+
+            .swiper-slide3 {
+                background: url("./assets/img/mobile-3-bg.jpg") no-repeat top left;
+                background-size: cover;
+                height: 100vh;
+            }
+
+            #audio {
+                display: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="lanren">
+            <div id="audio-btn" class="off" onclick="changeClass()">
+                <audio loop="loop" src="./assets/bgm.mp3" id="media" preload="preload"></audio>
             </div>
-            <div class="map"></div>
-            <div class="page">
-                <div class="arrow arrow-1"></div>
-                <div class="arrow arrow-2"></div>
-            </div>
         </div>
-        <div class="swiper-slide3"></div>
-    </div>
-</body>
-<script src="./assets/touchbox.js"></script>
-<script src="./assets/mobile-select.js"></script>
-<script src="./assets/echarts.min.js"></script>
-<script src="./assets/china.js"></script>
-<script src="./assets/ajax.js"></script>
-<script>
-    var flag = false;
-    var timer = null;
-    var touchBox = new TouchBox("#touchBoxCt", {
-        animation: "flow",
-    });
-    touchBox.on("beforeslide", function (toIndex, activeIndex) {
-        if (toIndex === 1 && activeIndex === 0 && !flag) {
-            return false;
+        <div id="touchBoxCt">
+            <div class="swiper-slide1">
+                <form class="form" onfocusout="handleInputBlur(event)" onfocusin="handleInputBin(event)">
+                    <div class="input">
+                        <input type="text" placeholder="请填写您的姓名" class="name" />
+                    </div>
+                    <div class="input select">
+                        <input placeholder="请选择您所在的省份和城市" readonly class="province" />
+                        <img src="./assets/img/up.png" alt="" id="area" />
+                    </div>
+                    <div class="input">
+                        <input type="text" placeholder="请填写您所在医院" class="hospital" />
+                    </div>
+                </form>
+                <img src="./assets/img/mobile-1-quan.png" class="img" />
+            </div>
+            <div class="swiper-slide2">
+                <div class="title">
+                    <p>中国已有<span id="num">0位</span>专家</p>
+                    <p>与您共同点亮</p>
+                    <p>胃癌免疫规范治疗之光</p>
+                </div>
+                <div class="map"></div>
+                <div class="page">
+                    <div class="arrow arrow-1"></div>
+                    <div class="arrow arrow-2"></div>
+                </div>
+            </div>
+            <div class="swiper-slide3"></div>
+        </div>
+    </body>
+    <script src="./assets/touchbox.js"></script>
+    <script src="./assets/mobile-select.js"></script>
+    <script src="./assets/echarts.min.js"></script>
+    <script src="./assets/china.js"></script>
+    <script src="./assets/ajax.js"></script>
+    <script>
+        if (window.location.href.indexOf("#") < 0) {
+            window.location.href = window.location.href + "#";
         }
-        if (toIndex === 0 && activeIndex === 1) {
-            return false;
-        }
-    });
+        var flag = false;
+        var timer = null;
+        var touchBox = new TouchBox("#touchBoxCt", {
+            animation: "flow",
+        });
+        touchBox.on("beforeslide", function (toIndex, activeIndex) {
+            if (toIndex === 1 && activeIndex === 0 && !flag) {
+                return false;
+            }
+            if (toIndex === 0 && activeIndex === 1) {
+                return false;
+            }
+        });
 
-    var mobileSelect = new MobileSelect({
-        trigger: "#area",
-        title: "省份和城市",
-        wheels: [
-            {
-                data: [
-                    "北京",
-                    "天津",
-                    "上海",
-                    "重庆",
-                    "河北",
-                    "河南",
-                    "云南",
-                    "辽宁",
-                    "黑龙江",
-                    "湖南",
-                    "安徽",
-                    "山东",
-                    "新疆",
-                    "江苏",
-                    "浙江",
-                    "江西",
-                    "湖北",
-                    "广西",
-                    "甘肃",
-                    "山西",
-                    "内蒙古",
-                    "陕西",
-                    "吉林",
-                    "福建",
-                    "贵州",
-                    "广东",
-                    "青海",
-                    "西藏",
-                    "四川",
-                    "宁夏",
-                    "海南",
-                    "台湾",
-                    "香港",
-                    "澳门",
-                ],
-            },
-        ],
-        callback: function (indexArr, data) {
-            document.querySelector(".province").value = data[0] || "";
-        },
-    });
-
-    var dataList = [
-        { name: "南海诸岛" },
-        { name: "北京" },
-        { name: "天津" },
-        { name: "上海" },
-        { name: "重庆" },
-        { name: "河北" },
-        { name: "河南" },
-        { name: "云南" },
-        { name: "辽宁" },
-        { name: "黑龙江" },
-        { name: "湖南" },
-        { name: "安徽" },
-        { name: "山东" },
-        { name: "新疆" },
-        { name: "江苏" },
-        { name: "浙江" },
-        { name: "江西" },
-        { name: "湖北" },
-        { name: "广西" },
-        { name: "甘肃" },
-        { name: "山西" },
-        { name: "内蒙古" },
-        { name: "陕西" },
-        { name: "吉林" },
-        { name: "福建" },
-        { name: "贵州" },
-        { name: "广东" },
-        { name: "青海" },
-        { name: "西藏" },
-        { name: "四川" },
-        { name: "宁夏" },
-        { name: "海南" },
-        { name: "台湾" },
-        { name: "香港" },
-        { name: "澳门" },
-    ];
-    var myChart = echarts.init(document.querySelector(".map"));
-    var option = {
-        geo: {
-            top: "50",
-            map: "china",
-            roam: false, //不开启缩放和平移
-            zoom: 1.2, //视角缩放比例
-            silent: true,
-            regions: [
+        var mobileSelect = new MobileSelect({
+            trigger: "#area",
+            title: "省份和城市",
+            wheels: [
                 {
-                    name: "南海诸岛",
-                    value: 0,
-                    itemStyle: {
-                        normal: {
-                            opacity: 0,
-                            label: {
-                                show: false,
+                    data: [
+                        "北京",
+                        "天津",
+                        "上海",
+                        "重庆",
+                        "河北",
+                        "河南",
+                        "云南",
+                        "辽宁",
+                        "黑龙江",
+                        "湖南",
+                        "安徽",
+                        "山东",
+                        "新疆",
+                        "江苏",
+                        "浙江",
+                        "江西",
+                        "湖北",
+                        "广西",
+                        "甘肃",
+                        "山西",
+                        "内蒙古",
+                        "陕西",
+                        "吉林",
+                        "福建",
+                        "贵州",
+                        "广东",
+                        "青海",
+                        "西藏",
+                        "四川",
+                        "宁夏",
+                        "海南",
+                        "台湾",
+                        "香港",
+                        "澳门",
+                    ],
+                },
+            ],
+            callback: function (indexArr, data) {
+                document.querySelector(".province").value = data[0] || "";
+            },
+        });
+
+        var dataList = [
+            { name: "南海诸岛" },
+            { name: "北京" },
+            { name: "天津" },
+            { name: "上海" },
+            { name: "重庆" },
+            { name: "河北" },
+            { name: "河南" },
+            { name: "云南" },
+            { name: "辽宁" },
+            { name: "黑龙江" },
+            { name: "湖南" },
+            { name: "安徽" },
+            { name: "山东" },
+            { name: "新疆" },
+            { name: "江苏" },
+            { name: "浙江" },
+            { name: "江西" },
+            { name: "湖北" },
+            { name: "广西" },
+            { name: "甘肃" },
+            { name: "山西" },
+            { name: "内蒙古" },
+            { name: "陕西" },
+            { name: "吉林" },
+            { name: "福建" },
+            { name: "贵州" },
+            { name: "广东" },
+            { name: "青海" },
+            { name: "西藏" },
+            { name: "四川" },
+            { name: "宁夏" },
+            { name: "海南" },
+            { name: "台湾" },
+            { name: "香港" },
+            { name: "澳门" },
+        ];
+        var myChart = echarts.init(document.querySelector(".map"));
+        var option = {
+            geo: {
+                top: "50",
+                map: "china",
+                roam: false, //不开启缩放和平移
+                zoom: 1.2, //视角缩放比例
+                silent: true,
+                regions: [
+                    {
+                        name: "南海诸岛",
+                        value: 0,
+                        itemStyle: {
+                            normal: {
+                                opacity: 0,
+                                label: {
+                                    show: false,
+                                },
+                            },
+                        },
+                        label: {
+                            show: false,
+                        },
+                    },
+                ],
+                label: {
+                    normal: {
+                        show: false,
+                        fontSize: "10",
+                        color: "#da6629",
+                        padding: [0, 20, 0, 0],
+                        formatter: function (params) {
+                            return params.name + "\r{img|}";
+                        },
+                        rich: {
+                            img: {
+                                backgroundColor: { image: "./assets/img/_quan.png" },
                             },
                         },
                     },
-                    label: {
-                        show: false,
+                    emphasis: {
+                        selectorLabel: { show: true },
+                        color: "#da6629",
                     },
+                },
+                itemStyle: {
+                    normal: {
+                        borderColor: "#fff",
+                        borderWidth: 1,
+                        areaColor: "#c7d4dd",
+                    },
+                    emphasis: {
+                        areaColor: "#00416a",
+                        shadowOffsetX: 0,
+                        shadowOffsetY: 0,
+                        shadowBlur: 20,
+                        borderWidth: 0,
+                        shadowColor: "rgba(0, 0, 0, 0.5)",
+                    },
+                },
+            },
+            series: [
+                {
+                    type: "map",
+                    data: dataList,
                 },
             ],
-            label: {
-                normal: {
-                    show: false,
-                    fontSize: "10",
-                    color: "#da6629",
-                    padding: [0, 20, 0, 0],
-                    formatter: function (params) {
-                        return params.name + "\r{img|}";
-                    },
-                    rich: {
-                        img: {
-                            backgroundColor: { image: "./assets/img/_quan.png" },
-                        },
-                    },
-                },
-                emphasis: {
-                    selectorLabel: { show: true },
-                    color: "#da6629",
-                },
-            },
-            itemStyle: {
-                normal: {
-                    borderColor: "#fff",
-                    borderWidth: 1,
-                    areaColor: "#c7d4dd",
-                },
-                emphasis: {
-                    areaColor: "#00416a",
-                    shadowOffsetX: 0,
-                    shadowOffsetY: 0,
-                    shadowBlur: 20,
-                    borderWidth: 0,
-                    shadowColor: "rgba(0, 0, 0, 0.5)",
-                },
-            },
-        },
-        series: [
-            {
-                type: "map",
-                data: dataList,
-            },
-        ],
-    };
-    myChart.setOption(option);
+        };
+        myChart.setOption(option);
 
-    document.querySelector(".img").addEventListener("click", function () {
-        Ajax(
-            "post",
-            "http://me.amrtang.com/map731/api/web/v1/actor/submit",
-            {
-                time: "1480576266",
-                token: "c92114bcc9e4454f1d2b7399dc9d62a9",
-                authToken: "",
-                name: document.querySelector(".name").value,
-                province: document.querySelector(".province").value,
-                hospital: document.querySelector(".hospital").value,
-            },
-            function (res) {
-                res = JSON.parse(res);
-                if (res.status === 1) {
-                    flag = true;
-                    touchBox.next();
-                    document.getElementById("num").innerText = res.data.total + "位";
-                    setTimeout(() => {
-                        myChart.dispatchAction({ type: "geoSelect", name: document.querySelector(".province").value });
-                    }, 1000);
-                    setTimeout(() => {
-                        myChart.dispatchAction({ type: "geoUnSelect", name: document.querySelector(".province").value });
-                    }, 2000);
-                    setTimeout(() => {
-                        myChart.dispatchAction({ type: "geoSelect", name: document.querySelector(".province").value });
-                    }, 3000);
-                    setTimeout(() => {
-                        myChart.dispatchAction({ type: "geoUnSelect", name: document.querySelector(".province").value });
-                    }, 4000);
-                    setTimeout(() => {
-                        myChart.dispatchAction({ type: "geoSelect", name: document.querySelector(".province").value });
-                    }, 5000);
-                    setTimeout(() => {
-                        myChart.dispatchAction({ type: "geoUnSelect", name: document.querySelector(".province").value });
-                    }, 6000);
-                    setTimeout(() => {
-                        myChart.dispatchAction({ type: "geoSelect", name: document.querySelector(".province").value });
-                    }, 7000);
-                    setTimeout(() => {
-                        myChart.dispatchAction({ type: "geoUnSelect", name: document.querySelector(".province").value });
-                    }, 8000);
-                    setTimeout(() => {
-                        myChart.dispatchAction({ type: "geoSelect", name: document.querySelector(".province").value });
-                    }, 9000);
-
-                } else {
-                    alert(res.msg);
+        document.querySelector(".img").addEventListener("click", function () {
+            Ajax(
+                "post",
+                "http://me.amrtang.com/map731/api/web/v1/actor/submit",
+                {
+                    time: "1480576266",
+                    token: "c92114bcc9e4454f1d2b7399dc9d62a9",
+                    authToken: "",
+                    name: document.querySelector(".name").value,
+                    province: document.querySelector(".province").value,
+                    hospital: document.querySelector(".hospital").value,
+                },
+                function (res) {
+                    res = JSON.parse(res);
+                    if (res.status === 1) {
+                        flag = true;
+                        touchBox.next();
+                        document.getElementById("num").innerText = res.data.total + "位";
+                        setTimeout(() => {
+                            myChart.dispatchAction({ type: "geoSelect", name: document.querySelector(".province").value });
+                        }, 1000);
+                        setTimeout(() => {
+                            myChart.dispatchAction({ type: "geoUnSelect", name: document.querySelector(".province").value });
+                        }, 2000);
+                        setTimeout(() => {
+                            myChart.dispatchAction({ type: "geoSelect", name: document.querySelector(".province").value });
+                        }, 3000);
+                        setTimeout(() => {
+                            myChart.dispatchAction({ type: "geoUnSelect", name: document.querySelector(".province").value });
+                        }, 4000);
+                        setTimeout(() => {
+                            myChart.dispatchAction({ type: "geoSelect", name: document.querySelector(".province").value });
+                        }, 5000);
+                        setTimeout(() => {
+                            myChart.dispatchAction({ type: "geoUnSelect", name: document.querySelector(".province").value });
+                        }, 6000);
+                        setTimeout(() => {
+                            myChart.dispatchAction({ type: "geoSelect", name: document.querySelector(".province").value });
+                        }, 7000);
+                        setTimeout(() => {
+                            myChart.dispatchAction({ type: "geoUnSelect", name: document.querySelector(".province").value });
+                        }, 8000);
+                        setTimeout(() => {
+                            myChart.dispatchAction({ type: "geoSelect", name: document.querySelector(".province").value });
+                        }, 9000);
+                    } else {
+                        alert(res.msg);
+                    }
                 }
-            }
+            );
+        });
+
+        document.addEventListener(
+            "WeixinJSBridgeReady",
+            function () {
+                changeClass();
+            },
+            false
         );
-    });
 
-    document.addEventListener("WeixinJSBridgeReady", function () {
-        changeClass();
-    }, false);
+        var agent = navigator.userAgent.toLowerCase();
+        var iLastTouch = null;
+        if (agent.indexOf("iphone") >= 0 || agent.indexOf("ipad") >= 0) {
+            document.body.addEventListener(
+                "touchend",
+                function (event) {
+                    var iNow = new Date().getTime();
+                    iLastTouch = iLastTouch || iNow + 1;
+                    var delta = iNow - iLastTouch;
+                    if (delta < 500 && delta > 0) {
+                        event.preventDefault();
+                        return false;
+                    }
+                    iLastTouch = iNow;
+                },
+                false
+            );
+        }
 
-    var agent = navigator.userAgent.toLowerCase();
-    var iLastTouch = null;
-    if (agent.indexOf('iphone') >= 0 || agent.indexOf('ipad') >= 0) {
-        document.body.addEventListener('touchend', function (event) {
-            var iNow = new Date()
-                .getTime();
-            iLastTouch = iLastTouch || iNow + 1
-            var delta = iNow - iLastTouch;
-            if (delta < 500 && delta > 0) {
-                event.preventDefault();
-                return false;
+        function changeClass() {
+            var dom = document.getElementById("audio-btn");
+            var media = document.getElementById("media");
+            if (media.paused) {
+                removeClass(dom, "off");
+                addClass(dom, "on");
+                media.play();
+            } else {
+                removeClass(dom, "on");
+                addClass(dom, "off");
+                media.pause();
             }
-            iLastTouch = iNow;
-        }, false);
-    }
-
-    function changeClass() {
-        var dom = document.getElementById("audio-btn");
-        var media = document.getElementById("media");
-        if (media.paused) {
-            removeClass(dom, "off");
-            addClass(dom, "on");
-            media.play();
-        } else {
-            removeClass(dom, "on");
-            addClass(dom, "off");
-            media.pause();
         }
-    }
-    function handleInputBlur(e) {
-        if (this.timer) {
-            clearTimeout(this.timer);
-        }
-        if (e && e.target && e.target.tagName && e.target.tagName.toLowerCase() === "input") {
-            this.timer = setTimeout(() => {
-                window.scrollTo(0, 0);
-            }, 20);
-        }
-    }
-    // 获得焦点事件
-    function handleInputBin(e) {
-        if (this.timer) {
-            clearTimeout(this.timer);
-        }
-    }
-
-    function hasClass(elem, cls) {
-        cls = cls || '';
-        if (cls.replace(/\s/g, '').length == 0) return false; //当cls没有参数时，返回false
-        return new RegExp(' ' + cls + ' ').test(' ' + elem.className + ' ');
-    }
-
-    function addClass(elem, cls) {
-        if (!hasClass(elem, cls)) {
-            elem.className = elem.className == '' ? cls : elem.className + ' ' + cls;
-        }
-    }
-
-    function removeClass(elem, cls) {
-        if (hasClass(elem, cls)) {
-            var newClass = ' ' + elem.className.replace(/[\t\r\n]/g, '') + ' ';
-            while (newClass.indexOf(' ' + cls + ' ') >= 0) {
-                newClass = newClass.replace(' ' + cls + ' ', ' ');
+        function handleInputBlur(e) {
+            if (this.timer) {
+                clearTimeout(this.timer);
             }
-            elem.className = newClass.replace(/^\s+|\s+$/g, '');
+            if (e && e.target && e.target.tagName && e.target.tagName.toLowerCase() === "input") {
+                this.timer = setTimeout(() => {
+                    window.scrollTo(0, 0);
+                }, 20);
+            }
         }
-    }
+        // 获得焦点事件
+        function handleInputBin(e) {
+            if (this.timer) {
+                clearTimeout(this.timer);
+            }
+        }
 
-</script>
+        function hasClass(elem, cls) {
+            cls = cls || "";
+            if (cls.replace(/\s/g, "").length == 0) return false; //当cls没有参数时，返回false
+            return new RegExp(" " + cls + " ").test(" " + elem.className + " ");
+        }
 
+        function addClass(elem, cls) {
+            if (!hasClass(elem, cls)) {
+                elem.className = elem.className == "" ? cls : elem.className + " " + cls;
+            }
+        }
+
+        function removeClass(elem, cls) {
+            if (hasClass(elem, cls)) {
+                var newClass = " " + elem.className.replace(/[\t\r\n]/g, "") + " ";
+                while (newClass.indexOf(" " + cls + " ") >= 0) {
+                    newClass = newClass.replace(" " + cls + " ", " ");
+                }
+                elem.className = newClass.replace(/^\s+|\s+$/g, "");
+            }
+        }
+    </script>
 </html>
