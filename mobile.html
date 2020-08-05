@@ -12,6 +12,63 @@
             margin: 0;
         }
 
+        #lanren #audio-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 30px;
+            height: 30px;
+            z-index: 99;
+        }
+
+        #lanren .on {
+            background: url('./assets/img/music_on.png') no-repeat 0 0;
+            background-size: cover;
+            -webkit-animation: rotating 1.2s linear infinite;
+            animation: rotating 1.2s linear infinite;
+        }
+
+        #lanren .off {
+            background: url('./assets/img/music_off.png') no-repeat 0 0;
+            background-size: cover;
+        }
+
+        @-webkit-keyframes rotating {
+            from {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            to {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes rotating {
+            from {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            to {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
         .swiper-slide1 {
             background: url("./assets/img/mobile-1-bg.png") no-repeat top left;
             background-size: cover;
@@ -195,14 +252,18 @@
             height: 100vh;
         }
 
-        .audio {
-            visibility: hidden;
+        #audio {
+            display: none;
         }
     </style>
 </head>
 
 <body>
-    <audio loop src="./assets/bgm.mp3" id="audio" muted autoplay preload="auto">该浏览器不支持audio属性</audio>
+    <div id="lanren">
+        <div id="audio-btn" class="off" onclick="changeClass()">
+            <audio loop="loop" src="./assets/bgm.mp3" id="media" preload="preload"></audio>
+        </div>
+    </div>
     <div id="touchBoxCt">
         <div class="swiper-slide1">
             <form class="form" onfocusout="handleInputBlur(event)" onfocusin="handleInputBin(event)">
@@ -240,7 +301,6 @@
 <script src="./assets/china.js"></script>
 <script src="./assets/ajax.js"></script>
 <script>
-
     var flag = false;
     var timer = null;
     var touchBox = new TouchBox("#touchBoxCt", {
@@ -508,6 +568,23 @@
         );
     });
 
+    document.addEventListener("WeixinJSBridgeReady", function () {
+        changeClass();
+    }, false);
+
+    function changeClass() {
+        var dom = document.getElementById("audio-btn");
+        var media = document.getElementById("media");
+        if (media.paused) {
+            removeClass(dom, "off");
+            addClass(dom, "on");
+            media.play();
+        } else {
+            removeClass(dom, "on");
+            addClass(dom, "off");
+            media.pause();
+        }
+    }
     function handleInputBlur(e) {
         if (this.timer) {
             clearTimeout(this.timer);
@@ -522,6 +599,28 @@
     function handleInputBin(e) {
         if (this.timer) {
             clearTimeout(this.timer);
+        }
+    }
+
+    function hasClass(elem, cls) {
+        cls = cls || '';
+        if (cls.replace(/\s/g, '').length == 0) return false; //当cls没有参数时，返回false
+        return new RegExp(' ' + cls + ' ').test(' ' + elem.className + ' ');
+    }
+
+    function addClass(elem, cls) {
+        if (!hasClass(elem, cls)) {
+            elem.className = elem.className == '' ? cls : elem.className + ' ' + cls;
+        }
+    }
+
+    function removeClass(elem, cls) {
+        if (hasClass(elem, cls)) {
+            var newClass = ' ' + elem.className.replace(/[\t\r\n]/g, '') + ' ';
+            while (newClass.indexOf(' ' + cls + ' ') >= 0) {
+                newClass = newClass.replace(' ' + cls + ' ', ' ');
+            }
+            elem.className = newClass.replace(/^\s+|\s+$/g, '');
         }
     }
 
