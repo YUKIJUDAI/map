@@ -103,32 +103,120 @@
             height: 500px;
         }
 
+        .page {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            left: 0;
+            right: 0;
+            bottom: 20px;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+
+        .arrow {
+            position: absolute;
+            left: 35%;
+            bottom: 30%;
+        }
+
+        .arrow-1 {
+            -webkit-animation: arrow-movement 2s ease-in-out infinite;
+            animation: arrow-movement 2s ease-in-out infinite;
+        }
+
+        .arrow-2 {
+            -webkit-animation: arrow-movement 2s 1s ease-in-out infinite;
+            animation: arrow-movement 2s 1s ease-in-out infinite;
+        }
+
+        .arrow:before,
+        .arrow:after {
+            background: #333;
+            content: "";
+            display: block;
+            height: 3px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 20px;
+        }
+
+        .arrow:before {
+            -webkit-transform: rotate(-45deg) translateX(-30%);
+            transform: rotate(-45deg) translateX(-30%);
+            -webkit-transform-origin: top left;
+            transform-origin: top left;
+        }
+
+        .arrow:after {
+            -webkit-transform: rotate(45deg) translateX(30%);
+            transform: rotate(45deg) translateX(30%);
+            -webkit-transform-origin: top right;
+            transform-origin: top right;
+        }
+
+        @-webkit-keyframes arrow-movement {
+            0% {
+                opacity: 0;
+                bottom: 30%;
+            }
+
+            30% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                bottom: 70%;
+            }
+        }
+
+        @keyframes arrow-movement {
+            0% {
+                opacity: 0;
+                bottom: 30%;
+            }
+
+            30% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                bottom: 60%;
+            }
+        }
+
         .swiper-slide3 {
             background: url("./assets/img/mobile-3-bg.jpg") no-repeat top left;
             background-size: cover;
             height: 100vh;
         }
+
+        .audio {
+            visibility: hidden;
+        }
     </style>
-    <title>mobile</title>
 </head>
 
 <body>
+    <audio loop src="./assets/bgm.mp3" id="audio" muted autoplay preload="auto">该浏览器不支持audio属性</audio>
     <div id="touchBoxCt">
         <div class="swiper-slide1">
-            <form class="form">
+            <form class="form" onfocusout="handleInputBlur(event)" onfocusin="handleInputBin(event)">
                 <div class="input">
                     <input type="text" placeholder="请填写您的姓名" class="name" />
                 </div>
                 <div class="input select">
-                    <input placeholder="请选择您所在的省份和地区" readonly class="province" />
+                    <input placeholder="请选择您所在的省份和城市" readonly class="province" />
                     <img src="./assets/img/up.png" alt="" id="area" />
                 </div>
                 <div class="input">
-                    <input type="text" placeholder="请选择您所在医院" class="hospital" />
+                    <input type="text" placeholder="请填写您所在医院" class="hospital" />
                 </div>
             </form>
-            <img src="./assets/img/mobile-1-info.png" class="info" />
-            <img src="./assets/img/mobile-1-img.png" class="img" />
+            <img src="./assets/img/mobile-1-quan.png" class="img" />
         </div>
         <div class="swiper-slide2">
             <div class="title">
@@ -137,6 +225,10 @@
                 <p>胃癌免疫规范治疗之光</p>
             </div>
             <div class="map"></div>
+            <div class="page">
+                <div class="arrow arrow-1"></div>
+                <div class="arrow arrow-2"></div>
+            </div>
         </div>
         <div class="swiper-slide3"></div>
     </div>
@@ -147,11 +239,13 @@
 <script src="./assets/china.js"></script>
 <script src="./assets/ajax.js"></script>
 <script>
+
     var flag = false;
+    var timer = null;
     var touchBox = new TouchBox("#touchBoxCt", {
         animation: "flow",
     });
-    touchBox.on('beforeslide', function (toIndex, activeIndex) {
+    touchBox.on("beforeslide", function (toIndex, activeIndex) {
         if (toIndex === 1 && activeIndex === 0 && !flag) {
             return false;
         }
@@ -330,19 +424,61 @@
             function (res) {
                 res = JSON.parse(res);
                 if (res.status === 1) {
-                    document.getElementById("num").innerText = res.data.total + "位";
-                    myChart.dispatchAction({ type: "geoSelect", name: document.querySelector(".province").value });
                     flag = true;
                     touchBox.next();
+                    document.getElementById("num").innerText = res.data.total + "位";
+                    setTimeout(() => {
+                        myChart.dispatchAction({ type: "geoSelect", name: document.querySelector(".province").value });
+                    }, 1000);
                     setTimeout(() => {
                         myChart.dispatchAction({ type: "geoUnSelect", name: document.querySelector(".province").value });
+                    }, 2000);
+                    setTimeout(() => {
+                        myChart.dispatchAction({ type: "geoSelect", name: document.querySelector(".province").value });
+                    }, 3000);
+                    setTimeout(() => {
+                        myChart.dispatchAction({ type: "geoUnSelect", name: document.querySelector(".province").value });
+                    }, 4000);
+                    setTimeout(() => {
+                        myChart.dispatchAction({ type: "geoSelect", name: document.querySelector(".province").value });
                     }, 5000);
+                    setTimeout(() => {
+                        myChart.dispatchAction({ type: "geoUnSelect", name: document.querySelector(".province").value });
+                    }, 6000);
+                    setTimeout(() => {
+                        myChart.dispatchAction({ type: "geoSelect", name: document.querySelector(".province").value });
+                    }, 7000);
+                    setTimeout(() => {
+                        myChart.dispatchAction({ type: "geoUnSelect", name: document.querySelector(".province").value });
+                    }, 8000);
+                    setTimeout(() => {
+                        myChart.dispatchAction({ type: "geoSelect", name: document.querySelector(".province").value });
+                    }, 9000);
+
                 } else {
                     alert(res.msg);
                 }
             }
         );
     });
+
+    function handleInputBlur(e) {
+        if (this.timer) {
+            clearTimeout(this.timer);
+        }
+        if (e && e.target && e.target.tagName && e.target.tagName.toLowerCase() === "input") {
+            this.timer = setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 20);
+        }
+    }
+    // 获得焦点事件
+    function handleInputBin(e) {
+        if (this.timer) {
+            clearTimeout(this.timer);
+        }
+    }
+    
 </script>
 
 </html>

@@ -28,7 +28,7 @@
 
         .info {
             position: absolute;
-            top: 80px;
+            top: 90px;
             left: 100px;
             font-size: 30px;
             color: #174168;
@@ -194,13 +194,24 @@
                         oldData.forEach((item) => {
                             myChart.dispatchAction({ type: "geoUnSelect", name: item });
                         });
-                        this.oldData = [];
                     }, 1000);
+                    setTimeout(() => {
+                        oldData.forEach((item) => {
+                            myChart.dispatchAction({ type: "geoSelect", name: item });
+                        });
+                    }, 2000);
+                    setTimeout(() => {
+                        oldData.forEach((item) => {
+                            myChart.dispatchAction({ type: "geoUnSelect", name: item });
+                            oldData = [];
+                        });
+                    }, 3000);
+
                 }
             );
         }
 
-        setInterval(() => getInfo(), 2000);
+        setInterval(() => getInfo(), 3500);
     </script>
 </body>
 
