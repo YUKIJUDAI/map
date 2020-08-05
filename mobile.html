@@ -357,7 +357,10 @@
                     "澳门",
                 ],
             },
-        ]
+        ],
+        callback: function (indexArr, data) {
+            document.querySelector(".province").value = data[0] || "";
+        },
     });
 
     var dataList = [
